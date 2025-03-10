@@ -1,0 +1,39 @@
+﻿@page
+@model EcoEnergySolutionsWebPage.Pages.ViewSimulationsModel
+@{
+    ViewData["Title"] = "Simulations List";
+}
+
+<h2>Simulations List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Energy Type</th>
+            <th>Value</th>
+            <th>Rati</th>
+            <th>GeneratedEnergy</th>
+            <th>Cost</th>
+            <th>Price</th>
+            <th>TotalCost</th>
+            <th>TotalPrice</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var simulacio in Model.simulacions)
+        {
+                <tr>
+                    <td>@simulacio.TipusEnergia</td>
+                    <td>@simulacio.Parametre</td>
+                    <td>@simulacio.Rati</td>
+                    <td>@simulacio.CalculateTotalEnergiaGenerada()</td>
+                    <td>@simulacio.Cost</td>
+                    <td>@simulacio.Preu</td>
+                    <td>@simulacio.CalculateTotalCost()</td>
+                    <td>@simulacio.CalculateTotalPreu()</td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="AddSimulations" class="btn btn-primary">Afegir Nova Simulació</a>

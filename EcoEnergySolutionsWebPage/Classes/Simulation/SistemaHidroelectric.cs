@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
-namespace EcoEnergyWeb
+namespace EcoEnergySolutionsWebPage
 {
     public class SistemaHidroelectric : SistemaEnergia
     {
