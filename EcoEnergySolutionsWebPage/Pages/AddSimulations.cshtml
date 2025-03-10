@@ -1,0 +1,132 @@
+﻿@page
+@model EcoEnergySolutionsWebPage.Pages.AddSimulationsModel
+@{
+    ViewData["Title"] = "Add Simulations";
+}
+<h2>Afegir energia</h2>
+
+<form method="post" id="energyForm">
+    <div class="form-group">
+        <label for="TipusEnergia">Tipus d'Energia</label>
+        <select asp-for="SistemaEnergia.TipusEnergia" class="form-control" id="tipusEnergia">
+            <option value="">Selecciona el tipus d'energia</option>
+            <option value="Solar">Solar</option>
+            <option value="Hidroelectrica">Hidroeléctrica</option>
+            <option value="Eolica">Eólica</option>
+        </select>
+    </div>
+
+    <div id="energiaFields"></div>
+
+    <div class="form-group">
+        <label asp-for="SistemaEnergia.Rati">Rati</label>
+        <input asp-for="SistemaEnergia.Rati" class="form-control" />
+        <span asp-validation-for="SistemaEnergia.Rati" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SistemaEnergia.Cost">Cost</label>
+        <input asp-for="SistemaEnergia.Cost" class="form-control" />
+        <span asp-validation-for="SistemaEnergia.Cost" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SistemaEnergia.Preu">Preu</label>
+        <input asp-for="SistemaEnergia.Preu" class="form-control" />
+        <span asp-validation-for="SistemaEnergia.Preu" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Afegir</button>
+</form>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+        <script>
+            document.getElementById("tipusEnergia").addEventListener("change", function() {
+                let energiaFields = document.getElementById("energiaFields");
+                energiaFields.innerHTML = "";
+                switch (this.value) {
+                    case "Solar":
+                        energiaFields.innerHTML = `
+                            <div class="form-group">
+                                <label for="SistemaSolar_HoresDeSol">Hores Sol</label>
+                                <input type="number" name="SistemaSolar.HoresDeSol" class="form-control" id="horesSol" />
+                                <span class="text-danger" data-valmsg-for="SistemaSolar.HoresDeSol"></span>
+                            </div>
+                        `;
+                        addValidation("horesSol", 0, "El valor ha de ser major que 0.");
+                        break;
+                    case "Hidroelectrica":
+                        energiaFields.innerHTML = `
+                            <div class="form-group">
+                                <label for="SistemaHidroelectric_CabalAigua">Cabal Aigua</label>
+                                <input type="number" name="SistemaHidroelectric.CabalAigua" class="form-control" id="cabalAigua" />
+                                <span class="text-danger" data-valmsg-for="SistemaHidroelectric.CabalAigua"></span>
+                            </div>
+                        `;
+                        addValidation("cabalAigua", 19, "El valor ha de ser major que 19.");
+                        break;
+                    case "Eolica":
+                        energiaFields.innerHTML = `
+                            <div class="form-group">
+                                <label for="SistemaEolic_VelocitatVent">Velocitat Vent</label>
+                                <input type="number" name="SistemaEolic.VelocitatVent" class="form-control" id="velocitatVent" />
+                                <span class="text-danger" data-valmsg-for="SistemaEolic.VelocitatVent"></span>
+                            </div>
+                        `;
+                        addValidation("velocitatVent", 4, "El valor ha de ser major que 4.");
+                        break;
+                }
+            });
+
+            function addValidation(inputId, minValue, errorMessage) {
+                const inputField = document.getElementById(inputId);
+                const errorSpan = inputField.nextElementSibling;
+
+                inputField.addEventListener("input", function() {
+                    const value = parseFloat(this.value);
+                    if (value <= minValue) {
+                        errorSpan.textContent = errorMessage;
+                        errorSpan.style.display = "block";
+                    } else {
+                        errorSpan.textContent = "";
+                        errorSpan.style.display = "none";
+                    }
+                });
+            }
+
+            // Prevent form submission if validation fails
+            document.getElementById("energyForm").addEventListener("submit", function(event) {
+                const tipusEnergia = document.getElementById("tipusEnergia").value;
+                let isValid = true;
+
+                switch (tipusEnergia) {
+                    case "Solar":
+                        const horesSol = parseFloat(document.getElementById("horesSol").value);
+                        if (isNaN(horesSol) || horesSol <= 0) {
+                            isValid = false;
+                            document.querySelector("[data-valmsg-for='SistemaSolar.HoresDeSol']").textContent = "El valor ha de ser major que 0.";
+                        }
+                        break;
+                    case "Hidroelectrica":
+                        const cabalAigua = parseFloat(document.getElementById("cabalAigua").value);
+                        if (isNaN(cabalAigua) || cabalAigua <= 19) {
+                            isValid = false;
+                            document.querySelector("[data-valmsg-for='SistemaHidroelectric.CabalAigua']").textContent = "El valor ha de ser major que 19.";
+                        }
+                        break;
+                    case "Eolica":
+                        const velocitatVent = parseFloat(document.getElementById("velocitatVent").value);
+                        if (isNaN(velocitatVent) || velocitatVent <= 4) {
+                            isValid = false;
+                            document.querySelector("[data-valmsg-for='SistemaEolic.VelocitatVent']").textContent = "El valor ha de ser major que 4.";
+                        }
+                        break;
+                }
+
+                if (!isValid) {
+                    event.preventDefault(); // Stop form submission
+                }
+            });
+        </script>
+}

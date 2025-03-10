@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 
-namespace EcoEnergyWeb
+namespace EcoEnergySolutionsWebPage
 {
 	public enum TipusEnergiaEnum
 	{
