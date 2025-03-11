@@ -1,0 +1,89 @@
+﻿@page
+@model EcoEnergySolutionsWebPage.Pages.AddWaterConsumptionModel
+@{
+    ViewData["Title"] = "Add Water Consumption";
+}
+
+<h2>Add Water Consumption</h2>
+
+<form method="post" onsubmit="return validateForm()">
+    <div class="form-group">
+        <label for="RegionCode">Region Code</label>
+        <input type="number" class="form-control" id="RegionCode" name="RegionCode" min="1" required />
+        <small class="form-text text-muted">Region Code must be a positive number.</small>
+    </div>
+    <div class="form-group">
+        <label for="Region">Region</label>
+        <input type="text" class="form-control" id="Region" name="Region" required />
+        <small class="form-text text-muted">Enter the region name.</small>
+    </div>
+    <div class="form-group">
+        <label for="Year">Year</label>
+        <input type="number" class="form-control" id="Year" name="Year" min="2000" max="2100" required />
+        <small class="form-text text-muted">Enter a valid year between 2000 and 2100.</small>
+    </div>
+    <div class="form-group">
+        <label for="Population">Population</label>
+        <input type="number" class="form-control" id="Population" name="Population" min="0" required />
+        <small class="form-text text-muted">Population must be a positive number.</small>
+    </div>
+    <div class="form-group">
+        <label for="DomesticConsumption">Domestic Consumption (m³)</label>
+        <input type="number" class="form-control" id="DomesticConsumption" name="DomesticConsumption" min="0" required />
+        <small class="form-text text-muted">Domestic Consumption must be a positive number.</small>
+    </div>
+    <div class="form-group">
+        <label for="EconomicActivitiesConsumption">Economic Activities Consumption (m³)</label>
+        <input type="number" class="form-control" id="EconomicActivitiesConsumption" name="EconomicActivitiesConsumption" min="0" required />
+        <small class="form-text text-muted">Economic Activities Consumption must be a positive number.</small>
+    </div>
+    <div class="form-group">
+        <label for="TotalConsumption">Total Consumption (m³)</label>
+        <input type="number" class="form-control" id="TotalConsumption" name="TotalConsumption" min="0" required />
+        <small class="form-text text-muted">Total Consumption must be a positive number.</small>
+    </div>
+    <div class="form-group">
+        <label for="DomesticConsumptionPerCapita">Domestic Consumption Per Capita (m³)</label>
+        <input type="number" step="0.01" class="form-control" id="DomesticConsumptionPerCapita" name="DomesticConsumptionPerCapita" min="0" required />
+        <small class="form-text text-muted">Domestic Consumption Per Capita must be a positive number.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+@if (Model.Message != null)
+{
+        <div class="alert alert-info mt-3">@Model.Message</div>
+}
+
+<script>
+    function validateForm() {
+        // Validate Year (must be between 2000 and 2100)
+        const yearInput = document.getElementById("Year");
+        if (yearInput.value < 2000 || yearInput.value > 2100) {
+            alert("Please enter a valid year between 2000 and 2100.");
+            yearInput.focus();
+            return false;
+        }
+
+        // Validate all numeric fields are positive
+        const numericFields = [
+            "RegionCode",
+            "Population",
+            "DomesticConsumption",
+            "EconomicActivitiesConsumption",
+            "TotalConsumption",
+            "DomesticConsumptionPerCapita"
+        ];
+
+        for (const fieldId of numericFields) {
+            const field = document.getElementById(fieldId);
+            if (field.value <= 0) {
+                alert(`Please enter a positive number for ${field.labels[0].textContent}.`);
+                field.focus();
+                return false;
+            }
+        }
+
+        return true; // Form is valid
+    }
+</script>
