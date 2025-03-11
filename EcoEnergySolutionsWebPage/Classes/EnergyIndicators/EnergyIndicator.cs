@@ -37,7 +37,7 @@
         public double? FEEI_ConstrMedTrans { get; set; } 
         public double? FEEI_RestaTransforMetal { get; set; } 
         public double? FEEI_AlimBegudaTabac { get; set; } 
-        public double? FEEI_TextilConfecCuirCalçat { get; set; }
+        public double? FEEI_TextilConfecCuirCalcat { get; set; }
         public double? FEEI_PastaPaperCartro { get; set; } 
         public double? FEEI_AltresIndus { get; set; } 
         public double? DGGN_PuntFrontEnagas { get; set; } 
