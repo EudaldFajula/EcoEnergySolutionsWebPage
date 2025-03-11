@@ -13,11 +13,6 @@ namespace EcoEnergySolutionsWebPage.Pages
         public List<EnergyIndicator> highAutoGasConsumption { get; set; }
         public Dictionary<string, double> averageNetProductionByYear { get; set; }
         public List<EnergyIndicator> highDemandLowProduction { get; set; }
-        //Method to remove the %
-        private string RemovePercentage(string value)
-        {
-            return value.Replace("%", ""); // Remove the % character
-        }
         private double ParseDouble(string value)
         {
             if (double.TryParse(value, out double result))
@@ -54,8 +49,8 @@ namespace EcoEnergySolutionsWebPage.Pages
                         CDEEBC_TotVendesXarxaCentral = ParseDouble(parts[12]),
                         CDEEBC_SaldoIntercanviElectr = ParseDouble(parts[13]),
                         CDEEBC_ElectricDemand = ParseDouble(parts[14]),
-                        CDEEBC_TotalEBCMercatRegulat = ParseDouble(RemovePercentage(parts[15])),
-                        CDEEBC_TotalEBCMercatLliure = ParseDouble(RemovePercentage(parts[16])),
+                        CDEEBC_TotalEBCMercatRegulat = parts[15],
+                        CDEEBC_TotalEBCMercatLliure = parts[16],
                         FEE_Industria = ParseDouble(parts[17]),
                         FEE_Terciari = ParseDouble(parts[18]),
                         FEE_Domestic = ParseDouble(parts[19]),
