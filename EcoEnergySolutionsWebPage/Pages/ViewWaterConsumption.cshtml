@@ -1,0 +1,129 @@
+﻿@page
+@model EcoEnergySolutionsWebPage.Pages.ViewWaterConsumptionModel
+@{
+    ViewData["Title"] = "Water Consumption Report";
+}
+
+<h2>Water Consumption Report</h2>
+
+<a href="AddWaterConsumption" class="btn btn-primary mb-3">Add New Consumption</a>
+
+<!-- Selector Dropdown -->
+<div class="form-group mb-3">
+    <label for="reportSelector">Select Report:</label>
+    <select class="form-control" id="reportSelector" onchange="showSelectedReport()">
+        <option value="allRecords">All Consumption Records</option>
+        <option value="top10Regions">Top 10 Regions with Highest Total Consumption</option>
+        <option value="averageConsumption">Average Consumption by Region</option>
+        <option value="suspiciousConsumption">Suspicious Consumption Values</option>
+        <option value="increasingTrend">Regions with Increasing Consumption Trend</option>
+    </select>
+</div>
+
+@if (Model.records.Count == 0)
+{
+        <div class="alert alert-warning">No records found.</div>
+}
+else
+{
+            <h3>Number of Records: @Model.records.Count</h3>
+
+        <!-- All Consumption Records -->
+        <div id="allRecords" class="report-section">
+            <h4>All Consumption Records</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Region Code</th>
+                        <th>Region</th>
+                        <th>Year</th>
+                        <th>Population</th>
+                        <th>Domestic Consumption (m³)</th>
+                        <th>Economic Activities Consumption (m³)</th>
+                        <th>Total Consumption (m³)</th>
+                        <th>Domestic Consumption Per Capita (m³)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var record in Model.records)
+                {
+                            <tr>
+                                <td>@record.RegionCode</td>
+                                <td>@record.Region</td>
+                                <td>@record.Year</td>
+                                <td>@record.Population</td>
+                                <td>@record.DomesticConsumption</td>
+                                <td>@record.EconomicActivitiesConsumption</td>
+                                <td>@record.TotalConsumption</td>
+                                <td>@record.DomesticConsumptionPerCapita</td>
+                            </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Top 10 Regions with Highest Total Consumption -->
+        <div id="top10Regions" class="report-section" style="display: none;">
+            <h4>Top 10 Regions with Highest Total Consumption in @Model.mostRecentYear</h4>
+            <ul>
+            @foreach (var region in Model.top10Regions)
+            {
+                        <li>@region.Region: @region.TotalConsumption m³</li>
+            }
+            </ul>
+        </div>
+
+        <!-- Average Consumption by Region -->
+        <div id="averageConsumption" class="report-section" style="display: none;">
+            <h4>Average Consumption by Region</h4>
+            <ul>
+            @foreach (var region in Model.averageConsumptionByRegion)
+            {
+                        <li>@region.Key: @region.Value m³</li>
+            }
+            </ul>
+        </div>
+
+        <!-- Suspicious Consumption Values -->
+        <div id="suspiciousConsumption" class="report-section" style="display: none;">
+            <h4>Suspicious Consumption Values</h4>
+            <ul>
+            @foreach (var record in Model.suspiciousConsumption)
+            {
+                        <li>@record.Region: @record.TotalConsumption m³</li>
+            }
+            </ul>
+        </div>
+
+        <!-- Regions with Increasing Consumption Trend -->
+        <div id="increasingTrend" class="report-section" style="display: none;">
+            <h4>Regions with Increasing Consumption Trend</h4>
+            <ul>
+            @foreach (var region in Model.increasingTrendRegions)
+            {
+                        <li>@region</li>
+            }
+            </ul>
+        </div>
+}
+
+<script>
+    // Function to show the selected report section
+    function showSelectedReport() {
+        // Hide all report sections
+        document.querySelectorAll('.report-section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Get the selected value from the dropdown
+        const selectedValue = document.getElementById('reportSelector').value;
+
+        // Show the selected report section
+        document.getElementById(selectedValue).style.display = 'block';
+    }
+
+    // Show the default report section on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        showSelectedReport(); // Show the default selected report
+    });
+</script>
