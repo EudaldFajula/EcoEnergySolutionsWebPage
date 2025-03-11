@@ -1,0 +1,123 @@
+﻿@page
+@model EcoEnergySolutionsWebPage.Pages.ViewEnergyIndicatorModel
+@{
+    ViewData["Title"] = "Energy Indicators Report";
+}
+
+<h2>Energy Indicators Report</h2>
+
+<a href="AddEnergyIndicators" class="btn btn-primary mb-3">Add New Indicator</a>
+
+<!-- Selector Dropdown -->
+<div class="form-group">
+    <label for="listSelector">Select List to View:</label>
+    <select class="form-control" id="listSelector" onchange="changeList()">
+        <option value="all">All Indicators</option>
+        <option value="highNetProduction">Net Production > 3000 (Ascending)</option>
+        <option value="highAutoGasConsumption">AutoGas Consumption > 100 (Descending)</option>
+        <option value="averageNetProduction">Average Net Production by Year</option>
+        <option value="highDemandLowProduction">Electric Demand > 4000 & Production < 300</option>
+    </select>
+</div>
+
+@if (Model.records.Count == 0)
+{
+        <div class="alert alert-warning">No records found.</div>
+}
+else
+{
+        <h3>Number of Records: @Model.records.Count</h3>
+
+        <!-- All Indicators Table -->
+        <div id="allIndicators">
+            <h4>All Indicators</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Net Production (CDEEBC)</th>
+                        <th>AutoGas Consumption (CCAC)</th>
+                        <th>Electric Demand (CDEEBC)</th>
+                        <th>Available Production (CDEEBC)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var record in Model.records)
+                {
+                            <tr>
+                                <td>@record.Date</td>
+                                <td>@record.CDEEBC_NetProduction</td>
+                                <td>@record.CCAC_AutoGas</td>
+                                <td>@record.CDEEBC_ElectricDemand</td>
+                                <td>@record.CDEEBC_DispProd</td>
+                            </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- High Net Production List -->
+        <div id="highNetProduction" style="display:none;">
+            <h4>Records with Net Production > 3000 (Ascending)</h4>
+            <ul>
+            @foreach (var record in Model.highNetProduction)
+            {
+                        <li>@record.Date: @record.CDEEBC_NetProduction</li>
+            }
+            </ul>
+        </div>
+
+        <!-- High AutoGas Consumption List -->
+        <div id="highAutoGasConsumption" style="display:none;">
+            <h4>Records with AutoGas Consumption > 100 (Descending)</h4>
+            <ul>
+            @foreach (var record in Model.highAutoGasConsumption)
+            {
+                        <li>@record.Date: @record.CCAC_AutoGas</li>
+            }
+            </ul>
+        </div>
+
+        <!-- Average Net Production by Year List -->
+        <div id="averageNetProduction" style="display:none;">
+            <h4>Average Net Production by Year</h4>
+            <ul>
+            @foreach (var avg in Model.averageNetProductionByYear)
+            {
+                        <li>@avg.Key: @avg.Value</li>
+            }
+            </ul>
+        </div>
+
+        <!-- High Demand Low Production List -->
+        <div id="highDemandLowProduction" style="display:none;">
+            <h4>Records with Electric Demand higher 4000 and Available Production lower 300</h4>
+            <ul>
+            @foreach (var record in Model.highDemandLowProduction)
+            {
+                        <li>@record.Date: Demand=@record.CDEEBC_ElectricDemand, Production=@record.CDEEBC_DispProd</li>
+            }
+            </ul>
+        </div>
+}
+
+<script>
+    function changeList() {
+        var selector = document.getElementById("listSelector");
+        var selectedValue = selector.value;
+
+        // Hide all lists
+        document.getElementById("allIndicators").style.display = "none";
+        document.getElementById("highNetProduction").style.display = "none";
+        document.getElementById("highAutoGasConsumption").style.display = "none";
+        document.getElementById("averageNetProduction").style.display = "none";
+        document.getElementById("highDemandLowProduction").style.display = "none";
+
+        // Show the selected list
+        if (selectedValue === "all") {
+            document.getElementById("allIndicators").style.display = "block";
+        } else {
+            document.getElementById(selectedValue).style.display = "block";
+        }
+    }
+</script>

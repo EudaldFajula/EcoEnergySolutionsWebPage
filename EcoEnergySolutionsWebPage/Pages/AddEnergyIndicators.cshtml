@@ -1,0 +1,73 @@
+﻿@page
+@model EcoEnergySolutionsWebPage.Pages.AddEnergyIndicatorModel
+@{
+    ViewData["Title"] = "Add Energy Indicator";
+}
+
+<h2>Add Energy Indicator</h2>
+
+<form method="post" onsubmit="return validateForm()">
+    <div class="form-group">
+        <label for="Date">Date (MM/yyyy)</label>
+        <input type="text" class="form-control" id="Date" name="Date" placeholder="MM/yyyy" pattern="^(0[1-9]|1[0-2])/\d{4}$" required />
+        <small class="form-text text-muted">Please enter the date in MM/yyyy format (e.g., 12/2023).</small>
+    </div>
+    <div class="form-group">
+        <label for="CDEEBC_NetProduction">Net Production (CDEEBC)</label>
+        <input type="number" class="form-control" id="CDEEBC_NetProduction" name="CDEEBC_NetProduction" min="0" required />
+        <small class="form-text text-muted">Net Production must be a positive number.</small>
+    </div>
+    <div class="form-group">
+        <label for="CCAC_AutoGas">AutoGas Consumption (CCAC)</label>
+        <input type="number" class="form-control" id="CCAC_AutoGas" name="CCAC_AutoGas" min="0" required />
+        <small class="form-text text-muted">AutoGas Consumption must be a positive number.</small>
+    </div>
+    <div class="form-group">
+        <label for="CDEEBC_ElectricDemand">Electric Demand (CDEEBC)</label>
+        <input type="number" class="form-control" id="CDEEBC_ElectricDemand" name="CDEEBC_ElectricDemand" min="0" required />
+        <small class="form-text text-muted">Electric Demand must be a positive number.</small>
+    </div>
+    <div class="form-group">
+        <label for="CDEEBC_DispProd">Available Production (CDEEBC)</label>
+        <input type="number" class="form-control" id="CDEEBC_DispProd" name="CDEEBC_DispProd" min="0" required />
+        <small class="form-text text-muted">Available Production must be a positive number.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+<script>
+    function validateForm() {
+        // Validate Date format (MM/yyyy)
+        const dateInput = document.getElementById("Date");
+        const datePattern = /^(0[1-9]|1[0-2])\/\d{4}$/;
+        if (!datePattern.test(dateInput.value)) {
+            alert("Please enter a valid date in MM/yyyy format (e.g., 12/2023).");
+            dateInput.focus();
+            return false;
+        }
+
+        // Validate all numeric fields are positive
+        const numericFields = [
+            "CDEEBC_NetProduction",
+            "CCAC_AutoGas",
+            "CDEEBC_ElectricDemand",
+            "CDEEBC_DispProd"
+        ];
+
+        for (const fieldId of numericFields) {
+            const field = document.getElementById(fieldId);
+            if (field.value <= 0) {
+                alert(`Please enter a positive number for ${field.labels[0].textContent}.`);
+                field.focus();
+                return false;
+            }
+        }
+
+        return true; // Form is valid
+    }
+</script>
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-info mt-3">@Model.Message</div>
+}
