@@ -5018,26 +5018,6 @@
     <DomesticConsumption>17020094</DomesticConsumption>
     <EconomicActivitiesConsumption>14216816</EconomicActivitiesConsumption>
     <TotalConsumption>31236910</TotalConsumption>
-    <DomesticConsumptionPerCapita>11581</DomesticConsumptionPerCapita>
-  </WaterConsumption>
-  <WaterConsumption>
-    <Year>2001</Year>
-    <RegionCode>34</RegionCode>
-    <Region> Hola</Region>
-    <Population>4356</Population>
-    <DomesticConsumption>45</DomesticConsumption>
-    <EconomicActivitiesConsumption>23</EconomicActivitiesConsumption>
-    <TotalConsumption>45</TotalConsumption>
-    <DomesticConsumptionPerCapita>46</DomesticConsumptionPerCapita>
-  </WaterConsumption>
-  <WaterConsumption>
-    <Year>2004</Year>
-    <RegionCode>45</RegionCode>
-    <Region>xdzfgh</Region>
-    <Population>345</Population>
-    <DomesticConsumption>34</DomesticConsumption>
-    <EconomicActivitiesConsumption>34</EconomicActivitiesConsumption>
-    <TotalConsumption>345</TotalConsumption>
-    <DomesticConsumptionPerCapita>345</DomesticConsumptionPerCapita>
+    <DomesticConsumptionPerCapita>115812001</DomesticConsumptionPerCapita>
   </WaterConsumption>
 </ArrayOfWaterConsumption>

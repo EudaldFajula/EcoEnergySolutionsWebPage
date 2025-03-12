@@ -6,7 +6,6 @@ namespace EcoEnergySolutionsWebPage.Pages
 {
     public class AddWaterConsumptionModel : PageModel
     {
-        private const string CsvFilePath = "./wwwroot/Files/InfoFiles/consum_aigua_cat_per_comarques.csv";
         private const string XmlFilePath = "./wwwroot/Files/InfoFiles/consum_aigua_cat_per_comarques.xml";
 
         [BindProperty]
@@ -53,7 +52,6 @@ namespace EcoEnergySolutionsWebPage.Pages
                     records = (List<WaterConsumption>)xmlSerializerVar.Deserialize(reader);
                 }
             }
-
             records.Add(new WaterConsumption
             {
                 Year = Year,

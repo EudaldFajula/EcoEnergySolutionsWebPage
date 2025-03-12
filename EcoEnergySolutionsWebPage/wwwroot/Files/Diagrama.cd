@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EcoEnergySolutionsWebPage.EnergyIndicator">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIIgAQAIZBEAzEAAAQAIAAsIKAYAYAAhECIAgAAAAwE=</HashCode>
+      <FileName>Classes\EnergyIndicators\EnergyIndicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EcoEnergySolutionsWebPage.Simulacio">
+    <Position X="14.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAUAAAAAACAAAACAAAEABAAAAAAAAgAAAAAAAAEAAA=</HashCode>
+      <FileName>Classes\Simulation\Simulacio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EcoEnergySolutionsWebPage.SistemaEolic">
+    <Position X="12.25" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Simulation\SistemaEolic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EcoEnergySolutionsWebPage.SistemaEnergia">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAUAAAAAAAAAAAAAAAAABAAAAAAABgAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Simulation\SistemaEnergia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EcoEnergySolutionsWebPage.SistemaHidroelectric">
+    <Position X="12.25" Y="6.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Classes\Simulation\SistemaHidroelectric.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EcoEnergySolutionsWebPage.SistemaSolar">
+    <Position X="14.25" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Simulation\SistemaSolar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="EcoEnergySolutionsWebPage.TipusEnergiaEnum">
+    <Position X="14.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAASAA=</HashCode>
+      <FileName>Classes\Simulation\SistemaEnergia.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
