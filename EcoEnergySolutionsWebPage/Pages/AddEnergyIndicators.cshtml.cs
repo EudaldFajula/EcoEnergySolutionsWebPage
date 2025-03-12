@@ -83,7 +83,7 @@ namespace EcoEnergySolutionsWebPage.Pages
             var updatedJsonData = JsonSerializer.Serialize(records, new JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText(JsonFilePath, updatedJsonData);
 
-            Message = "Indicator added successfully!";
+            
             return RedirectToPage("ViewEnergyIndicators");
         }
     }

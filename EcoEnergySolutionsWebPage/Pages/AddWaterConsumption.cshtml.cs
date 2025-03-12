@@ -43,15 +43,6 @@ namespace EcoEnergySolutionsWebPage.Pages
                 Message = "Invalid year. Please enter a year between 2000 and 2100.";
                 return Page();
             }
-
-            // Save the data to a CSV file
-            var csvLine = $"{Year},{RegionCode},\"{Region}\",{Population},{DomesticConsumption},{EconomicActivitiesConsumption},{TotalConsumption},{DomesticConsumptionPerCapita}";
-            if (!System.IO.File.Exists(CsvFilePath))
-            {
-                System.IO.File.WriteAllText(CsvFilePath, "Any,Codi comarca,Comarca,Població,Domèstic xarxa,Activitats econòmiques i fonts pròpies,Total,Consum domèstic per càpita\n");
-            }
-            System.IO.File.AppendAllText(CsvFilePath, csvLine + "\n");
-
             // Save the data to an XML file
             var records = new List<WaterConsumption>();
             if (System.IO.File.Exists(XmlFilePath))
