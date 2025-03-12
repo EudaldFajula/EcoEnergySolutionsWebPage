@@ -61,7 +61,6 @@ namespace EcoEnergySolutionsWebPage.Pages
                                 currentField += line[i];
                             }
                         }
-
                         result.Add(currentField); 
                         return result.ToArray();
                     }

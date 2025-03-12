@@ -66,7 +66,7 @@ namespace EcoEnergySolutionsWebPage.Pages
                         FEEI_ConstrMedTrans = ParseDouble(parts[29]),
                         FEEI_RestaTransforMetal = ParseDouble(parts[30]),
                         FEEI_AlimBegudaTabac = ParseDouble(parts[31]),
-                        FEEI_TextilConfecCuirCalçat = ParseDouble(parts[32]),
+                        FEEI_TextilConfecCuirCalcat = ParseDouble(parts[32]),
                         FEEI_PastaPaperCartro = ParseDouble(parts[33]),
                         FEEI_AltresIndus = ParseDouble(parts[34]),
                         DGGN_PuntFrontEnagas = ParseDouble(parts[35]),
