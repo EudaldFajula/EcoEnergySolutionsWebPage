@@ -7,6 +7,7 @@
         public double Rati { get; set; }
         public double Cost { get; set; }
         public double Preu { get; set; }
+
         public double CalculateTotalEnergiaGenerada()
         {
             switch (TipusEnergia)
